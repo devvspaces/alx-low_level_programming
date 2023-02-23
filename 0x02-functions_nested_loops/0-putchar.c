@@ -1,10 +1,10 @@
 #include "main.h"
 
-/*
+/**
  * main - Entry point
  *
  * Description: Print the word putchar
- * 
+ *
  * Return: 0
  */
 int main(void)
