@@ -14,7 +14,7 @@ int main(void)
 	int i;
 
 	for (; i < 8; i++)
-		_putchar(s[i]);
+		_putchar(&s[i]);
 
 	_putchar('\n');
 
