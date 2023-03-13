@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strpbrk - Search a string for any of a set of bytes.
  * @s: string
