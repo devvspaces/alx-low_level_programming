@@ -1,0 +1,1 @@
+# Created good static libs
