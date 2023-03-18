@@ -1,28 +1,6 @@
 #include "main.h"
 
 /**
- * mul - Multiply a and b
- *
- * Description: Performs Overflow and zero checks
- *
- * @a: first value
- * @b: second value
- *
- * Return: multiplication result or -1 when it
- * fails check
- */
-int mul(unsigned int a, unsigned int b)
-{
-	unsigned int x = a * b;
-
-	if ((a != 0 && x / a != b) || (a == 0) || (b == 0))
-	{
-		return (-1);
-	}
-	return (x);
-}
-
-/**
  * array_range - creates an array of integers
  *
  * Description: creates range of integers from
@@ -36,30 +14,20 @@ int mul(unsigned int a, unsigned int b)
  */
 int *array_range(int min, int max)
 {
-	int res;
-	int *ptr;
+	int res, i, len;
 	int *mem;
 
 	if (min > max)
 		return (NULL);
 
-	res = mul((max - min) + 1, sizeof(int));
+	len = (max - min) + 1;
+	mem = malloc(sizeof(int) * len);
 
-	if (res == -1)
+	if (!mem)
 		return (NULL);
 
-	mem = malloc(res);
-
-	if (mem == NULL)
-		return (NULL);
-
-	ptr = mem;
-
-	while (min <= max)
-	{
-		*ptr = min++;
-		ptr = sizeof(min) + ptr;
-	}
+	for (i = 0; i < len; i++)
+		mem[i] = min++;
 
 	return (mem);
 }
