@@ -38,7 +38,7 @@ int *array_range(int min, int max)
 {
 	int res;
 	int *ptr;
-	void *mem;
+	int *mem;
 
 	if (min > max)
 		return (NULL);
