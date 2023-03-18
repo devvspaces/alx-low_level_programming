@@ -37,13 +37,13 @@ int mul(unsigned int a, unsigned int b)
 int *array_range(int min, int max)
 {
 	int res;
+	int *ptr;
 	void *mem;
-	char *ptr;
 
 	if (min > max)
 		return (NULL);
 
-	res = mul((max - min) + 1, sizeof(min));
+	res = mul((max - min) + 1, sizeof(int));
 
 	if (res == -1)
 		return (NULL);
