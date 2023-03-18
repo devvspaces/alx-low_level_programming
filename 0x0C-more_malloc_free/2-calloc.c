@@ -19,24 +19,53 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * *_calloc - allocates memory for an array, using malloc
- * @nmemb: array length
- * @size: size of each element
- * Return: pointer
+ * mul - Multiply a and b
+ *
+ * Description: Performs Overflow and zero checks
+ *
+ * @a: first value
+ * @b: second value
+ *
+ * Return: multiplication result or -1 when it
+ * fails check
  */
+int mul(unsigned int a, unsigned int b)
+{
+	unsigned int x = a * b;
 
+	if ((a != 0 && x / a != b) || (a == 0) || (b == 0))
+	{
+		return (-1);
+	}
+	return (x);
+}
+
+/**
+ * _calloc - allocates memory for an
+ * array of nmemb of size bytes each
+ *
+ * Description: Check for integer overflow
+ *
+ * @nmemb: amount of contiguous memory blocks
+ * @size: size of each block in bytes
+ *
+ * Return: memory address if success or
+ * NULL if failed
+ */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	int *m;
+	int res = mul(nmemb, size);
+	void *mem;
 
-	if (size == 0 || nmemb == 0)
-		return (NULL);
-	m = malloc(sizeof(int) * nmemb);
-
-	if (m == 0)
+	if (res == -1)
 		return (NULL);
 
-	*m = 0;
+	mem = malloc(res);
 
-	return ((void *)m);
+	if (mem == NULL)
+		return (NULL);
+
+	_memset(mem, 0, res);
+
+	return (mem);
 }
