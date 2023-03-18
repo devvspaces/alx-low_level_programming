@@ -14,7 +14,7 @@
  */
 int *array_range(int min, int max)
 {
-	int res, i, len;
+	int i, len;
 	int *mem;
 
 	if (min > max)
