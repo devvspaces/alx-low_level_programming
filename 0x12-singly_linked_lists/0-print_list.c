@@ -1,22 +1,6 @@
 #include "lists.h"
 
 /**
- * _printf - print string
- *
- * @s: string to print
- */
-void _printf(char *s)
-{
-	int i = 0;
-
-	while (s[i] != '\0')
-	{
-		_putchar(s[i]);
-		i++;
-	}
-}
-
-/**
  * print_nodes - print nodes recursively
  *
  * @node: node
@@ -30,16 +14,11 @@ size_t print_nodes(const list_t *node, size_t count)
 		return (count);
 
 	if (node->str == NULL)
-		_printf("[0] (nil)");
+		printf("[0] (nil)\n");
 	else
 	{
-		_printf("[");
-		_putchar(node->len + '0');
-		_printf("] ");
-		_printf(node->str);
+		printf("[%d] %s\n", node->len, node->str);
 	}
-
-	_putchar('\n');
 
 	return (print_nodes(node->next, ++count));
 }
