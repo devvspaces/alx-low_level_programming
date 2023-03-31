@@ -2,7 +2,7 @@
 
 /**
  * add_node - add a new node to the
- * linked list
+ * linked list (prepend)
  *
  * @head: node
  * @str: string
