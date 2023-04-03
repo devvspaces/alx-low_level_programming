@@ -27,7 +27,8 @@ int delete_nodeint_at_index(listint_t **head, unsigned int idx)
 		point = point->next;
 	}
 
-	if (idx == 0){
+	if (idx == 0)
+	{
 		*head = point->next;
 		free(point);
 		return (1);
