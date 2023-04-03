@@ -12,11 +12,11 @@ void free_node(listint_t *node)
 }
 
 /**
- * free_list - free linked list
+ * free_listint - free linked list
  *
  * @head: node
  */
-void free_list(listint_t *head)
+void free_listint(listint_t *head)
 {
 	if (head == NULL)
 		return;
@@ -27,6 +27,6 @@ void free_list(listint_t *head)
 		return;
 	}
 
-	free_list(head->next);
+	free_listint(head->next);
 	free_node(head);
 }

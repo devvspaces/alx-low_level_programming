@@ -1,11 +1,11 @@
 #include "lists.h"
 
 /**
- * add_node - add a new node to the
+ * add_nodeint - add a new node to the
  * linked list (prepend)
  *
  * @head: node
- * @str: string
+ * @n: integer
  *
  * Return: address of the new node
  */

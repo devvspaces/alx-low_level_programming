@@ -17,11 +17,11 @@ listint_t *find_tail(listint_t *node)
 }
 
 /**
- * add_node_end - add a new node to the
+ * add_nodeint_end - add a new node to the
  * linked list (append)
  *
  * @head: node
- * @str: string
+ * @n: integer
  *
  * Return: address of the new node
  */
