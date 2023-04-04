@@ -1,15 +1,9 @@
 #include "lists.h"
 
-/**
- * detectLoop - print nodes recursively
- *
- * @head: node
- *
- * Return: count
- */
 const listint_t *detectLoop(const listint_t *head)
 {
 	const listint_t *slow = head, *fast = head;
+	const listint_t *prev;
 
 	if (head == NULL || head->next == NULL)
 		return (NULL);
@@ -28,7 +22,16 @@ const listint_t *detectLoop(const listint_t *head)
 	if (slow != fast)
 		return (NULL);
 
-	return (slow->next);
+	slow = head;
+
+	while (slow != fast)
+	{
+		prev = fast;
+		slow = slow->next;
+		fast = fast->next;
+	}
+
+	return (prev);
 }
 
 /**
@@ -36,19 +39,15 @@ const listint_t *detectLoop(const listint_t *head)
  *
  * @node: node
  * @count: current count
- * @loop: loop node
  *
  * Return: count
  */
-size_t print_nodes_safe(
-	const listint_t *node,
-	size_t count, const listint_t *loop
-)
+size_t print_nodes_safe(const listint_t *node, size_t count, const listint_t *loop)
 {
 	if (node == NULL)
 		return (count);
 
-	if (node == loop)
+	if (node == loop && loop != NULL)
 	{
 		printf("[%p] %d\n", (void *)node, node->n);
 		printf("-> [%p] %d\n", (void *)node->next, node->next->n);
