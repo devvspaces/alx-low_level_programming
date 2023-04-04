@@ -18,6 +18,8 @@ void free_listint2(listint_t **head)
 		point = next;
 	}
 
+	point = NULL;
+
 	if (next != NULL)
 	{
 		free(next);
