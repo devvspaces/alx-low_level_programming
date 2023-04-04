@@ -15,11 +15,11 @@ size_t print_nodes_safe(const listint_t *node, size_t count)
 
 	if ((node->next != NULL) && (node->next > node))
 	{
-		printf("%d\n", node->n);
+		printf("[%p] %d\n", (void *)node, node->n);
 		return (++count);
 	}
 
-	printf("%d\n", node->n);
+	printf("[%p] %d\n", (void *)node, node->n);
 
 	return (print_nodes_safe(node->next, ++count));
 }
