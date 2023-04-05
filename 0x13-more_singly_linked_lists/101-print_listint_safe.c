@@ -31,13 +31,13 @@ const listint_t *detectLoop(const listint_t *head)
 		return (NULL);
 
 	slow = head;
+	prev = fast;
 
-	while (slow != fast)
-	{
-		prev = fast;
+	do {
 		slow = slow->next;
 		fast = fast->next;
-	}
+		prev = fast;
+	} while (slow != fast);
 
 	return (prev);
 }
@@ -52,8 +52,7 @@ const listint_t *detectLoop(const listint_t *head)
  * Return: count
  */
 size_t print_nodes_safe(
-	const listint_t *node, size_t count, const listint_t *loop
-)
+	const listint_t *node, size_t count, const listint_t *loop)
 {
 	if (node == NULL)
 		return (count);
@@ -79,8 +78,5 @@ size_t print_nodes_safe(
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	if (head == NULL)
-		exit(98);
-
 	return (print_nodes_safe(head, 0, detectLoop(head)));
 }
