@@ -1,5 +1,13 @@
 #include "lists.h"
 
+/**
+ * detectLoop - detect loop point
+ * in linked list
+ *
+ * @head: node
+ *
+ * Return: pointer to loop cause
+ */
 const listint_t *detectLoop(const listint_t *head)
 {
 	const listint_t *slow = head, *fast = head;
@@ -39,10 +47,13 @@ const listint_t *detectLoop(const listint_t *head)
  *
  * @node: node
  * @count: current count
+ * @loop: current loop
  *
  * Return: count
  */
-size_t print_nodes_safe(const listint_t *node, size_t count, const listint_t *loop)
+size_t print_nodes_safe(
+	const listint_t *node, size_t count, const listint_t *loop
+)
 {
 	if (node == NULL)
 		return (count);
