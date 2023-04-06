@@ -1,53 +1,69 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a list of nodes
+ * __p - prints no looped list.
  *
- * @head: node
+ * @head: pointer to the start of the list
  *
- * Return: Number of nodes
+ * Return: the number of nodes in the list
  */
-size_t print_listint_safe(const listint_t *head)
+size_t __p(const listint_t *head)
 {
-	const listint_t *slow = head, *fast = head;
-	size_t count = 0;
-
-	if (head == NULL || head->next == NULL)
-		exit(98);
-
-	printf("[%p] %d\n", (void *)slow, slow->n);
-	count++;
-
-	slow = slow->next;
-	fast = fast->next->next;
+	const listint_t *slow = head;
+	size_t num = 0;
 
 	while (slow != NULL)
 	{
-		if (slow == fast)
-		{
-			printf("\n\nThe number before: %d\n\n", fast->n);
-			break;
-		}
-
+		num++;
 		printf("[%p] %d\n", (void *)slow, slow->n);
-		count++;
 		slow = slow->next;
-		
-		if (fast && fast->next)
-			fast = fast->next->next;
 	}
+	return (num);
+}
 
-	if (slow == NULL)
-		return (count);
+/**
+ * print_listint_safe - prints a listint_t linked list.
+ * @head: pointer to the start of the list
+ *
+ * Return: the number of nodes in the list
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	const listint_t *slow = head;
+	const listint_t *fast = head;
+	size_t num = 0;
+	int count = 0;
 
-	if (slow != slow->next->next)
+	if (head == NULL)
+		return (0);
+	if (head->next == NULL)
+		return (1);
+	do {
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast)
+			break;
+	} while (fast && fast->next);
+	if (slow != fast)
+		return (__p(head));
+	slow = head;
+	while (slow != fast)
 	{
-		count += 2;
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		printf("[%p] %d\n", (void *)slow->next, slow->next->n);
+		slow = slow->next;
+		fast = fast->next;
 	}
-
-	printf("-> [%p] %d\n", (void *)slow->next->next, slow->next->next->n);
-
-	return (count);
+	slow = head;
+	if (slow == fast)
+		count++;
+	while (count <= 1)
+	{
+		num++;
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		slow = slow->next;
+		if (slow == fast)
+			count++;
+	}
+	printf("-> [%p] %d\n", (void *)fast, fast->n);
+	return (num);
 }
