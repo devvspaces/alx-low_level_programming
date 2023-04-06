@@ -1,75 +1,6 @@
 #include "lists.h"
 
 /**
- * detectLoop - detect loop point
- * in linked list
- *
- * @head: node
- *
- * Return: pointer to loop cause
- */
-const listint_t *detectLoop(const listint_t *head)
-{
-	const listint_t *slow = head, *fast = head;
-	const listint_t *prev;
-
-	if (head == NULL || head->next == NULL)
-		return (NULL);
-
-	slow = slow->next;
-	fast = fast->next->next;
-
-	while (fast && fast->next)
-	{
-		if (slow == fast)
-			break;
-		slow = slow->next;
-		fast = fast->next->next;
-	}
-
-	if (slow != fast)
-		return (NULL);
-
-	slow = head;
-	prev = fast;
-
-	do {
-		slow = slow->next;
-		fast = fast->next;
-		prev = fast;
-	} while (slow != fast);
-
-	return (prev);
-}
-
-/**
- * print_nodes_safe - print nodes recursively
- *
- * @node: node
- * @count: current count
- * @loop: current loop
- *
- * Return: count
- */
-size_t print_nodes_safe(
-	const listint_t *node, size_t count, const listint_t *loop)
-{
-	if (node == NULL)
-		return (count);
-
-	if (node == loop && loop != NULL)
-	{
-		printf("[%p] %d\n", (void *)node, node->n);
-		printf("-> [%p] %d\n", (void *)node->next, node->next->n);
-		return (++count);
-	}
-
-	printf("[%p] %d\n", (void *)node, node->n);
-
-	return (print_nodes_safe(node->next, ++count, loop));
-}
-
-/**
  * print_listint_safe - prints a list of nodes
  *
  * @head: node
@@ -78,5 +9,45 @@ size_t print_nodes_safe(
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	return (print_nodes_safe(head, 0, detectLoop(head)));
+	const listint_t *slow = head, *fast = head;
+	size_t count = 0;
+
+	if (head == NULL || head->next == NULL)
+		exit(98);
+
+	printf("[%p] %d\n", (void *)slow, slow->n);
+	count++;
+
+	slow = slow->next;
+	fast = fast->next->next;
+
+	while (slow != NULL)
+	{
+		if (slow == fast)
+		{
+			printf("\n\nThe number before: %d\n\n", fast->n);
+			break;
+		}
+
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		count++;
+		slow = slow->next;
+		
+		if (fast && fast->next)
+			fast = fast->next->next;
+	}
+
+	if (slow == NULL)
+		return (count);
+
+	if (slow != slow->next->next)
+	{
+		count += 2;
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		printf("[%p] %d\n", (void *)slow->next, slow->next->n);
+	}
+
+	printf("-> [%p] %d\n", (void *)slow->next->next, slow->next->next->n);
+
+	return (count);
 }
