@@ -9,11 +9,9 @@
  */
 size_t __free(listint_t **h)
 {
-	size_t size = sizeof(*h);
-
 	free(*h);
 	*h = NULL;
-	return (size);
+	return (1);
 }
 
 /**
@@ -37,6 +35,7 @@ size_t __f(listint_t **h)
  *
  * @h: node
  * @loop: node
+ * @count: count
  *
  * Return: size of freed list
  */
