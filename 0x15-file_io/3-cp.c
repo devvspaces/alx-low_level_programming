@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
 #include "main.h"
 
 /**
@@ -14,7 +13,7 @@ void _close_fd(int fd)
 	ssize_t c_stat;
 
 	c_stat = close(fd);
-	if (c_stat < 0)
+	if (c_stat == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", fd);
 		exit(100);
@@ -30,7 +29,7 @@ void _close_fd(int fd)
  */
 void _check_read(ssize_t fd, char *file)
 {
-	if (fd < 0)
+	if (fd == -1)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", file);
 		_close_fd(fd);
@@ -47,7 +46,7 @@ void _check_read(ssize_t fd, char *file)
  */
 void _check_write(ssize_t fd, char *file)
 {
-	if (fd < 0)
+	if (fd == -1)
 	{
 		dprintf(2, "Error: Can't write to file %s\n", file);
 		_close_fd(fd);
@@ -89,42 +88,29 @@ void _check_and_set(int ac, char **av, char **a, char **b)
 int main(int ac, char **av)
 {
 	int fd_r, fd_w;
-	char *file_from, *file_to, *buf;
+	char *file_from, *file_to, buf[1];
 	ssize_t r_stat, w_stat;
-	size_t read_bytes = 1024;
+	size_t read_bytes = 1;
 
 	_check_and_set(ac, av, &file_from, &file_to);
 
 	fd_r = open(file_from, O_RDONLY);
 	_check_read(fd_r, file_from);
-	fd_w = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, 0664);
+	fd_w = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	_check_write(fd_w, file_to);
 
 	while (1)
 	{
-		/* Create a new buffer */
-		buf = malloc(read_bytes);
-		if (buf == NULL)
-			free(buf);
-
 		/* Read bytes into buffer */
 		r_stat = read(fd_r, buf, read_bytes);
-		if (r_stat < 0)
-			free(buf);
-		_check_read(fd_r, file_from);
-
+		_check_read(r_stat, file_from);
 		if (r_stat == 0)
 			break;
 
 		/* Write buffer into fd_w */
 		w_stat = write(fd_w, buf, r_stat);
-		if (w_stat < r_stat)
-			free(buf);
-		_check_write(fd_w, file_to);
-
-		free(buf);
+		_check_write(w_stat, file_to);
 	}
-	free(buf);
 	_close_fd(fd_r);
 	_close_fd(fd_w);
 	return (0);
