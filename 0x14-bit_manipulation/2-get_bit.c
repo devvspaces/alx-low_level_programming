@@ -12,7 +12,7 @@
 int get_bit(unsigned long int n, unsigned int index)
 {
 	int bit;
-	int i = sizeof(long int) * 7;
+	int i = sizeof(unsigned long int) * 7;
 	unsigned int len = 0;
 	int s = 0;
 
