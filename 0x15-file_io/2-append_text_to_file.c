@@ -1,23 +1,23 @@
 #include "main.h"
 
 /**
- * create_file - creates a file
+ * append_text_to_file - appends a file
  *
  * @filename: filename
  * @text_content: content
  *
  * Return: 1 if success else -1
  */
-int create_file(const char *filename, char *text_content)
+int append_text_to_file(const char *filename, char *text_content)
 {
 	int fd;
-	ssize_t stat;
 	int len;
+	ssize_t stat;
 
 	if (filename == NULL)
 		return (-1);
 
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	fd = open(filename, O_WRONLY | O_APPEND);
 
 	if (fd < 0)
 		return (-1);
