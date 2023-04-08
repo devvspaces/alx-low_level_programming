@@ -15,7 +15,7 @@ void _close_fd(int fd)
 	c_stat = close(fd);
 	if (c_stat == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -31,7 +31,7 @@ void _check_read(ssize_t fd, char *file)
 {
 	if (fd == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", file);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
 		_close_fd(fd);
 		exit(98);
 	}
@@ -48,7 +48,7 @@ void _check_write(ssize_t fd, char *file)
 {
 	if (fd == -1)
 	{
-		dprintf(2, "Error: Can't write to file %s\n", file);
+		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file);
 		_close_fd(fd);
 		exit(99);
 	}
@@ -69,7 +69,7 @@ void _check_and_set(int ac, char **av, char **a, char **b)
 {
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", av[0]);
+		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", av[0]);
 		exit(97);
 	}
 	*a = av[1];
