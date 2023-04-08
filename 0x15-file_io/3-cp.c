@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include "main.h"
 
 /**
@@ -96,7 +97,7 @@ int main(int ac, char **av)
 
 	fd_r = open(file_from, O_RDONLY);
 	_check_read(fd_r, file_from);
-	fd_w = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, 664);
+	fd_w = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, 0664);
 	_check_write(fd_w, file_to);
 
 	while (1)
