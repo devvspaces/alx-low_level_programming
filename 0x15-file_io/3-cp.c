@@ -88,9 +88,9 @@ void _check_and_set(int ac, char **av, char **a, char **b)
 int main(int ac, char **av)
 {
 	int fd_r, fd_w;
-	char *file_from, *file_to, buf[1];
+	char *file_from, *file_to, buf[1024];
 	ssize_t r_stat, w_stat;
-	size_t read_bytes = 1;
+	size_t read_bytes = 1024;
 
 	_check_and_set(ac, av, &file_from, &file_to);
 
