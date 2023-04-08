@@ -6,7 +6,16 @@
         "functional": "c",
         "tuple": "c",
         "type_traits": "c",
-        "utility": "c"
+        "utility": "c",
+        "deque": "c",
+        "list": "c",
+        "vector": "c",
+        "string_view": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "initializer_list": "c",
+        "main.h": "c"
     },
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
 }

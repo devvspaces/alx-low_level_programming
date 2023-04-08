@@ -1,0 +1,62 @@
+{
+	"levels": {
+		"beginners": [
+			{
+				"topic": "here",
+				"subtitles": [
+					{
+						"title": "here",
+						"description": "here",
+						"objective": "here"
+					}
+				]
+			}
+		],
+		"intermediate": [
+			{
+				"topic": "here",
+				"subtitles": [
+					{
+						"title": "here",
+						"description": "here",
+						"objective": "here"
+					}
+				]
+			}
+		],
+		"advanced": [
+			{
+				"topic": "here",
+				"subtitles": [
+					{
+						"title": "here",
+						"description": "here",
+						"objective": "here"
+					}
+				]
+			}
+		]
+	},
+	"resources": {
+		"article": [
+			{
+				"title": "here",
+				"link": "here"
+			}
+		],
+		"video": [
+			{
+				"title": "here",
+				"link": "here"
+			}
+		],
+		"book": [
+			{
+				"title": "here",
+				"author": "here"
+			}
+		]
+	}
+}
+
+
