@@ -77,12 +77,15 @@ void _check_and_set(int ac, char **av, char **a, char **b)
 }
 
 /**
- * cp - check the code
+ * main - copy text content from
+ * one file to another
  *
  * @ac: no of args
  * @av: args
+ *
+ * Return: 0
  */
-void cp(int ac, char **av)
+int main(int ac, char **av)
 {
 	int fd_r, fd_w;
 	char *file_from, *file_to, *buf;
@@ -93,7 +96,7 @@ void cp(int ac, char **av)
 
 	fd_r = open(file_from, O_RDONLY);
 	_check_read(fd_r, file_from);
-	fd_w = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, 0664);
+	fd_w = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, 664);
 	_check_write(fd_w, file_to);
 
 	while (1)
@@ -103,7 +106,7 @@ void cp(int ac, char **av)
 		if (buf == NULL)
 			free(buf);
 
-		/* Read 1024 bytes into buffer */
+		/* Read bytes into buffer */
 		r_stat = read(fd_r, buf, read_bytes);
 		if (r_stat < 0)
 			free(buf);
@@ -123,4 +126,5 @@ void cp(int ac, char **av)
 	free(buf);
 	_close_fd(fd_r);
 	_close_fd(fd_w);
+	return (0);
 }
