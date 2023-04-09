@@ -146,7 +146,7 @@ void p_os_abi(unsigned char e_indent[EI_NIDENT])
 		break;
 	default:
 		printf("<unknown: %x>\n", e_indent[EI_OSABI]);
-		return (0);
+		return;
 	}
 	printf("UNIX - %s\n", name);
 }
