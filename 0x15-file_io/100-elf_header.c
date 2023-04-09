@@ -179,9 +179,6 @@ void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
 	_pad("Type:");
 	switch (type)
 	{
-	case ET_NONE:
-		printf("NONE (Unknown type)\n");
-		break;
 	case ET_REL:
 		name = "REL (Relocatable file)";
 		break;
