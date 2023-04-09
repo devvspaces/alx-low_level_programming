@@ -176,7 +176,7 @@ void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
 	char *name;
 
 	if (e_indent[EI_DATA] == ELFDATA2MSB)
-		type = type >> 8;
+		type = l_b_endian(type);
 
 	_pad("Type:");
 	switch (type)
