@@ -193,7 +193,7 @@ void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
 		break;
 	default:
 		printf("<unknown: %x>\n", type);
-		break;
+		return;
 	}
 	printf("%s\n", name);
 }
