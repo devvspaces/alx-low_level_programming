@@ -38,12 +38,18 @@ void _pad(char *s)
 void p_class(unsigned char e_indent[EI_NIDENT])
 {
 	_pad("Class:");
-	if (e_indent[EI_CLASS] == ELFCLASS32)
+	switch (e_indent[EI_CLASS])
+	{
+	case ELFCLASS32:
 		printf("ELF32\n");
-	else if (e_indent[EI_CLASS] == ELFCLASS64)
+		break;
+	case ELFCLASS64:
 		printf("ELF64\n");
-	else
+		break;
+	default:
 		printf("<unknown: %x>\n", e_indent[EI_CLASS]);
+		break;
+	}
 }
 
 /**
@@ -55,11 +61,18 @@ void p_class(unsigned char e_indent[EI_NIDENT])
 void p_data(unsigned char e_indent[EI_NIDENT])
 {
 	_pad("Data:");
-	if (e_indent[EI_DATA] == ELFDATA2LSB)
-		printf("2's complement, little endian");
-	else
-		printf("2's complement, big endian");
-	printf("\n");
+	switch (e_indent[EI_DATA])
+	{
+	case ELFDATA2LSB:
+		printf("2's complement, little endian\n");
+		break;
+	case ELFDATA2MSB:
+		printf("2's complement, big endian\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_indent[EI_DATA]);
+		break;
+	}
 }
 
 /**
@@ -158,13 +171,19 @@ void p_abi_version(unsigned char e_indent[EI_NIDENT])
  * @type: member of the structure
  * identifies the object file type
  */
-void p_type(uint16_t type)
+void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
 {
 	char *name;
+
+	if (e_indent[EI_DATA] == ELFDATA2MSB)
+		type = type >> 8;
 
 	_pad("Type:");
 	switch (type)
 	{
+	case ET_NONE:
+		printf("NONE (Unknown type)\n");
+		break;
 	case ET_REL:
 		name = "REL (Relocatable file)";
 		break;
@@ -178,7 +197,7 @@ void p_type(uint16_t type)
 		name = "CORE (Core file)";
 		break;
 	default:
-		exit(98);
+		printf("<unknown: %x>\n", type);
 		break;
 	}
 	printf("%s\n", name);
@@ -264,7 +283,7 @@ int main(int ac, char **av)
 	printf("ELF Header:\n");
 	for (i = 0; i < c_fp; i++)
 		p_fp[i](header.e_ident);
-	p_type(header.e_type);
+	p_type(header.e_type, header.e_ident);
 	p_entry(header.e_entry, header.e_ident);
 
 	return (0);

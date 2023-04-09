@@ -25,7 +25,7 @@ void p_version(unsigned char e_indent[EI_NIDENT]);
 unsigned int l_b_endian(unsigned int x);
 void p_os_abi(unsigned char e_indent[EI_NIDENT]);
 void p_abi_version(unsigned char e_indent[EI_NIDENT]);
-void p_type(uint16_t type);
+void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT]);
 void p_entry(unsigned int addr, unsigned char e_indent[EI_NIDENT]);
 
 #endif
