@@ -39,10 +39,11 @@ void p_class(unsigned char e_indent[EI_NIDENT])
 {
 	_pad("Class:");
 	if (e_indent[EI_CLASS] == ELFCLASS32)
-		printf("ELF32");
+		printf("ELF32\n");
+	else if (e_indent[EI_CLASS] == ELFCLASS64)
+		printf("ELF64\n");
 	else
-		printf("ELF64");
-	printf("\n");
+		printf("<unknown: %x>\n", e_indent[EI_CLASS]);
 }
 
 /**
@@ -133,7 +134,7 @@ void p_os_abi(unsigned char e_indent[EI_NIDENT])
 		name = "Stand-alone";
 		break;
 	default:
-		exit(98);
+		printf("<unknown: %x>\n", e_indent[EI_OSABI]);
 		break;
 	}
 	printf("UNIX - %s\n", name);
