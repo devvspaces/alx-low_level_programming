@@ -47,7 +47,6 @@ void p_class(unsigned char e_indent[EI_NIDENT])
 		printf("ELF64\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", e_indent[EI_CLASS]);
 		break;
 	}
 }
@@ -70,7 +69,6 @@ void p_data(unsigned char e_indent[EI_NIDENT])
 		printf("2's complement, big endian\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", e_indent[EI_DATA]);
 		break;
 	}
 }
@@ -176,7 +174,7 @@ void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
 	char *name;
 
 	if (e_indent[EI_DATA] == ELFDATA2MSB)
-		type = l_b_endian(type);
+		type = type >> 8;
 
 	_pad("Type:");
 	switch (type)
