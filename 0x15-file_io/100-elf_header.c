@@ -82,7 +82,7 @@ void p_data(unsigned char e_indent[EI_NIDENT])
 void p_version(unsigned char e_indent[EI_NIDENT])
 {
 	_pad("Version:");
-	printf("%d (current)\n", e_indent[EI_VERSION]);
+	printf("%d\n", e_indent[EI_VERSION]);
 }
 
 /**
@@ -154,7 +154,7 @@ void p_os_abi(unsigned char e_indent[EI_NIDENT])
 /**
  * p_abi_version - print abi version
  *
- * @e_indent: array  of  bytes  specifies
+ * @e_indent: array of bytes specifies
  * how  to interpret the file
  */
 void p_abi_version(unsigned char e_indent[EI_NIDENT])
@@ -167,6 +167,7 @@ void p_abi_version(unsigned char e_indent[EI_NIDENT])
  * p_type - print type line
  *
  * @type: member of the structure
+ * @e_indent: array of bytes specifies
  * identifies the object file type
  */
 void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
