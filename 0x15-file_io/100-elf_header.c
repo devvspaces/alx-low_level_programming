@@ -257,30 +257,29 @@ int main(int ac, char **av)
 	if (ac != 2)
 	{
 		dprintf(2, "Usage: %s filename\n", av[0]);
-		return (1);
+		exit(98);
 	}
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
 		dprintf(2, "Failed to open");
-		return (1);
+		exit(98);
 	}
-
 	r_stat = read(fd, &header, sizeof(header));
 	if (r_stat == -1)
 	{
 		dprintf(2, "Failed to read");
-		return (1);
+		exit(98);
 	}
 
 	check_valid_elf(header, av[1]);
-
 	printf("ELF Header:\n");
 	for (i = 0; i < c_fp; i++)
 		p_fp[i](header.e_ident);
 	p_type(header.e_type, header.e_ident);
 	p_entry(header.e_entry, header.e_ident);
-
+	if (close(fd) == -1)
+		dprintf(2, "Can't close opened file\n"), exit(98);
 	return (0);
 }
