@@ -13,7 +13,6 @@ void p_magic(unsigned char e_indent[EI_NIDENT])
 	printf("  Magic:  ");
 	for (i = 0; i < EI_PAD; i++)
 		printf(" %02x", e_indent[i]);
-
 	for (; i < 16; i++)
 		printf(" %02x", e_indent[EI_PAD]);
 	printf("\n");
@@ -207,9 +206,9 @@ void p_type(unsigned int type, unsigned char e_indent[EI_NIDENT])
  */
 void p_entry(unsigned int addr, unsigned char e_indent[EI_NIDENT])
 {
-	_pad("Entry point address:");
 	if (e_indent[EI_DATA] != ELFDATA2LSB)
 		addr = l_b_endian(addr);
+	_pad("Entry point address:");
 	printf("%#x\n", addr);
 }
 
