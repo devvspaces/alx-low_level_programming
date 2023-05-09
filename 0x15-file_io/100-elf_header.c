@@ -81,7 +81,7 @@ void p_data(unsigned char e_indent[EI_NIDENT])
 void p_version(unsigned char e_indent[EI_NIDENT])
 {
 	_pad("Version:");
-	printf("%d\n", e_indent[EI_VERSION]);
+	printf("%d  (current)\n", e_indent[EI_VERSION]);
 }
 
 /**
