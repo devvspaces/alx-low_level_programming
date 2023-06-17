@@ -12,7 +12,7 @@
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	char key[7], *secret;
-	int ph_len = strph_len(argv[1]), i, temp;
+	int ph_len = strlen(argv[1]), i, temp;
 
 	secret = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
