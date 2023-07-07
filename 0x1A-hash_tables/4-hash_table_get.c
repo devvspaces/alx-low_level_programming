@@ -1,9 +1,9 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_get - Retrieve the value of 
+ * hash_table_get - Retrieve the value of
  * a key from a hash table.
- * 
+ *
  * @ht: A pointer to the hash table.
  * @key: The key to get the value of.
  *
@@ -25,7 +25,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	hnode = ht->array[index];
 	while (hnode && strcmp(hnode->key, key) != 0)
 		hnode = hnode->next;
-	
+
 	if (hnode == NULL)
 		return (NULL);
 
