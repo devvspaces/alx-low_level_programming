@@ -58,7 +58,7 @@ typedef struct shash_table_node
 	struct shash_table_node *next;
 	struct shash_table_node *sprev;
 	struct shash_table_node *snext;
-} shnode;
+} shash_node_t;
 
 /**
  * struct shash_table_s - Sorted hash table data structure
@@ -72,9 +72,9 @@ typedef struct shash_table_node
 typedef struct shash_table_s
 {
 	unsigned long int size;
-	shnode **array;
-	shnode *shead;
-	shnode *stail;
+	shash_node_t **array;
+	shash_node_t *shead;
+	shash_node_t *stail;
 } shash_table_t;
 
 shash_table_t *shash_table_create(unsigned long int size);
