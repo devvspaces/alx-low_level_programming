@@ -1,3 +1,4 @@
 {
-    "editor.comments.insertSpace": false
+    "editor.comments.insertSpace": false,
+    "editor.insertSpaces": false
 }
